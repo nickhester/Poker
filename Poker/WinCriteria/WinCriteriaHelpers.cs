@@ -10,24 +10,36 @@ namespace Poker.WinCriteria
     {
         public static List<Hand> FindHighestHandByRemainingCards(List<Hand> hands)
         {
-            // todo: figure out sort!
             // sort remaining cards
-            //hands.ForEach(x => x.RemainingCards.OrderByDescending(y => y));
+            hands.ForEach(x => x.RemainingCards.Sort());
 
-            //for (int i = 0; i < hands.Count; i++)
-            //{
-            //    hands[i].RemainingCards.Sort();
-            //}
-            
-            // compare highest, then next highest, etc. (assumes same number in each list)
-            for (int i = 0; i < hands.Count; i++)
+            // compare highest (last in the list), then next highest, etc. (assumes same number in each list)
+            // go through once for each number of cards...
+            for (int i = hands[0].RemainingCards.Count - 1; i >= 0; i--)
             {
-                Card highestCard = hands.Max(x => x.RemainingCards[i]);
-                hands = hands.Where(x => x.RemainingCards[i] == highestCard).ToList();
+                // make a list of the currently considered round of cards
+                List<Card> cardsToCompare = new List<Card>();
+                for (int j = 0; j < hands.Count; j++)
+                {
+                    cardsToCompare.Add(hands[j].RemainingCards[i]);
+                }
+
+                // find which ones aren't equal to the value of the highest card
+                Card highestCard = cardsToCompare.Max();
+                for (int j = 0; j < hands.Count; j++)
+                {
+                    // and remove them from the hand list
+                    if (hands[j].RemainingCards[i] != highestCard)
+                    {
+                        hands.RemoveAt(j);
+                        j--;
+                    }
+                }
 
                 if (hands.Count == 1)
                     return hands;
             }
+            
             return hands;
         }
     }

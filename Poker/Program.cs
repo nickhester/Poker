@@ -14,7 +14,7 @@ namespace Poker
 
             // run test data sets
             bool runTests = true;
-            //Logger.LogDebug = false;
+            Logger.LogDebug = false;
 
             if (runTests)
             {

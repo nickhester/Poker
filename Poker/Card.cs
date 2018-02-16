@@ -91,9 +91,9 @@ namespace Poker
 
         public int CompareTo(object obj)
         {
-            if ((Card)this == (Card)obj)
+            if (this == (Card)obj)
                 return 0;
-            else if ((Card)this > (Card)obj)
+            else if (this > (Card)obj)
                 return 1;
 
             return -1;
