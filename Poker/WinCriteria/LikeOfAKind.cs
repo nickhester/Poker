@@ -16,6 +16,8 @@ namespace Poker.WinCriteria
 
         public Hand Compare(List<Hand> handsToCompare)
         {
+            Logger.Log($"Entering criteria check for {numberRequirement} of a kind with {handsToCompare.Count} hands.");
+
             // first check to see if each one qualifies at all
             for (int i = 0; i < handsToCompare.Count; i++)
             {
@@ -27,10 +29,12 @@ namespace Poker.WinCriteria
             int numWinners = winningHands.Count();
             if (numWinners <= 0)       // if there are no winners, return null
             {
+                Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with no winner.");
                 return null;
             }
             else if (numWinners == 1)  //  or if there's a single winner, return results
             {
+                Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with a winner (immediately).");
                 return winningHands.Single();
             }
 
@@ -38,6 +42,7 @@ namespace Poker.WinCriteria
             List<Hand> winningTiedHands = DetermineHighestWinners(winningHands);
             if (winningTiedHands.Count == 1)
             {
+                Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with a winner (tie breaker with higher match).");
                 return winningTiedHands.Single();
             }
 
@@ -45,9 +50,11 @@ namespace Poker.WinCriteria
             List<Hand> winningRemainingTiedHands = Hand.HighestRemainingCardValue(winningTiedHands);
             if (winningRemainingTiedHands.Count == 1)
             {
+                Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with a winner (tie breaker with higher kickers).");
                 return winningRemainingTiedHands.Single();
             }
 
+            Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with no winner.");
             return null;
         }
 
