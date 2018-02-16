@@ -21,18 +21,16 @@ namespace Poker
 
         public Hand DetermineWinner(List<Hand> hands)
         {
-            IWinCriteria fiveOfAKind = new LikeOfAKind(5);
-            IWinCriteria fourOfAKind = new LikeOfAKind(4);
-            IWinCriteria threeOfAKind = new LikeOfAKind(3);
-            IWinCriteria twoOfAKind = new LikeOfAKind(2);
-
             List<IWinCriteria> winCriteria = new List<IWinCriteria>()
             {
-                fiveOfAKind,
-                fourOfAKind,
-                threeOfAKind,
-                twoOfAKind
-            };
+                new LikeOfAKind(5),     // fiveOfAKind,
+                new LikeOfAKind(4),     // fourOfAKind,
+                new LikeOfAKind(3, 2),  // fullHouse
+                new Flush(),            // flush
+                new LikeOfAKind(3),     // threeOfAKind,
+                new LikeOfAKind(2, 2),  // two pair
+                new LikeOfAKind(2)      // twoOfAKind
+        };
 
             foreach (var criterion in winCriteria)
             {

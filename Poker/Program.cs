@@ -14,7 +14,7 @@ namespace Poker
 
             // run test data sets
             bool runTests = true;
-            Logger.LogDebug = false;
+            //Logger.LogDebug = false;
 
             if (runTests)
             {
@@ -45,7 +45,11 @@ namespace Poker
                 DataSets.GetHands_TwoOfAKindWithJoker(),
                 DataSets.GetHands_ThreeOfAKind(),
                 DataSets.GetHands_FourOfAKind(),
-                DataSets.GetHands_FiveOfAKind()
+                DataSets.GetHands_FiveOfAKind(),
+                DataSets.GetHands_FullHouse(),
+                DataSets.GetHands_TwoPair(),
+                DataSets.GetHands_Flush(),
+                DataSets.GetHands_FlushWithTieBreaker()
             };
 
             for (int i = 0; i < dataSets.Count; i++)

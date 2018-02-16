@@ -22,26 +22,26 @@ namespace Poker
                 new Hand(John, new List<Card>()       
                 {
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Three, Card.Suits.Club),
-                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Heart),
+                    new Card(Card.Numbers.Three, Card.Suits.Spade),
+                    new Card(Card.Numbers.Four, Card.Suits.Diamond),
                     new Card(Card.Numbers.Five, Card.Suits.Club)
                 }),
                 new Hand(Carry, new List<Card>()
                 {
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Jack, Card.Suits.Club),
-                    new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Two, Card.Suits.Club)
+                    new Card(Card.Numbers.Seven, Card.Suits.Heart),
+                    new Card(Card.Numbers.Jack, Card.Suits.Heart),
+                    new Card(Card.Numbers.Eight, Card.Suits.Heart),
+                    new Card(Card.Numbers.Two, Card.Suits.Heart)
                 }),
                 new Hand(Mary, new List<Card>()
                 {
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Four, Card.Suits.Club),
-                    new Card(Card.Numbers.Two, Card.Suits.Club),
-                    new Card(Card.Numbers.Five, Card.Suits.Club)
+                    new Card(Card.Numbers.Eight, Card.Suits.Spade),
+                    new Card(Card.Numbers.Four, Card.Suits.Spade),
+                    new Card(Card.Numbers.Two, Card.Suits.Spade),
+                    new Card(Card.Numbers.Five, Card.Suits.Spade)
                 })
             };
             return dataSet;
@@ -56,15 +56,15 @@ namespace Poker
                 new Hand(John, new List<Card>()
                 {
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Three, Card.Suits.Club),
-                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Three, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Four, Card.Suits.Diamond),
                     new Card(Card.Numbers.Five, Card.Suits.Club)
                 }),
                 new Hand(Carry, new List<Card>()
                 {
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Seven, Card.Suits.Heart),
                     new Card(Card.Numbers.Jack, Card.Suits.Club),
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club)
@@ -73,7 +73,7 @@ namespace Poker
             return dataSet;
         }
 
-        public static DataSet GetHands_TwoOfAKindWithJoker()  // winner with 2 of a kind, and higher winning cards
+        public static DataSet GetHands_TwoOfAKindWithJoker()  // winner with 2 of a kind, using a joker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winner = Carry;
@@ -82,7 +82,7 @@ namespace Poker
                 new Hand(John, new List<Card>()
                 {
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Heart),
                     new Card(Card.Numbers.Three, Card.Suits.Club),
                     new Card(Card.Numbers.Four, Card.Suits.Club),
                     new Card(Card.Numbers.Five, Card.Suits.Club)
@@ -90,8 +90,8 @@ namespace Poker
                 new Hand(Carry, new List<Card>()
                 {
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Seven, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Jack, Card.Suits.Diamond),
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Joker, Card.Suits.Club)
                 })
@@ -109,14 +109,14 @@ namespace Poker
                 {
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Ace, Card.Suits.Club),
-                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Spade),
                     new Card(Card.Numbers.Four, Card.Suits.Club),
                     new Card(Card.Numbers.Five, Card.Suits.Club)
                 }),
                 new Hand(Carry, new List<Card>()
                 {
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Queen, Card.Suits.Club),
+                    new Card(Card.Numbers.Queen, Card.Suits.Spade),
                     new Card(Card.Numbers.Jack, Card.Suits.Club),
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club)
@@ -127,7 +127,7 @@ namespace Poker
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Four, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club),
-                    new Card(Card.Numbers.Five, Card.Suits.Club)
+                    new Card(Card.Numbers.Five, Card.Suits.Spade)
                 })
             };
             return dataSet;
@@ -142,7 +142,7 @@ namespace Poker
                 new Hand(Steve, new List<Card>()       
                 {
                     new Card(Card.Numbers.Ace, Card.Suits.Club),
-                    new Card(Card.Numbers.Ace, Card.Suits.Club),
+                    new Card(Card.Numbers.Ace, Card.Suits.Heart),
                     new Card(Card.Numbers.Ace, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club)
@@ -152,14 +152,14 @@ namespace Poker
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Three, Card.Suits.Club),
-                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Four, Card.Suits.Heart),
                     new Card(Card.Numbers.Five, Card.Suits.Club)
                 }),
                 new Hand(Carry, new List<Card>()
                 {
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Heart),
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club)
                 })
@@ -177,14 +177,14 @@ namespace Poker
                 {
                     new Card(Card.Numbers.Ten, Card.Suits.Club),
                     new Card(Card.Numbers.Ace, Card.Suits.Club),
-                    new Card(Card.Numbers.Ace, Card.Suits.Club),
+                    new Card(Card.Numbers.Ace, Card.Suits.Diamond),
                     new Card(Card.Numbers.Two, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club)
                 }),
                 new Hand(John, new List<Card>()
                 {
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
-                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Diamond),
                     new Card(Card.Numbers.Three, Card.Suits.Club),
                     new Card(Card.Numbers.Four, Card.Suits.Club),
                     new Card(Card.Numbers.Five, Card.Suits.Club)
@@ -195,7 +195,7 @@ namespace Poker
                     new Card(Card.Numbers.Jack, Card.Suits.Club),
                     new Card(Card.Numbers.Jack, Card.Suits.Club),
                     new Card(Card.Numbers.Jack, Card.Suits.Club),
-                    new Card(Card.Numbers.Two, Card.Suits.Club)
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond)
                 })
             };
             return dataSet;
@@ -211,7 +211,7 @@ namespace Poker
                 {
                     new Card(Card.Numbers.Two, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club),
-                    new Card(Card.Numbers.Two, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Heart),
                     new Card(Card.Numbers.Two, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club)
                 }),
@@ -221,15 +221,151 @@ namespace Poker
                     new Card(Card.Numbers.Eight, Card.Suits.Club),
                     new Card(Card.Numbers.Three, Card.Suits.Club),
                     new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Five, Card.Suits.Heart)
+                }),
+                new Hand(Carry, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Heart),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Club)
+                })
+            };
+            return dataSet;
+        }
+
+        public static DataSet GetHands_FullHouse()  // winner with full house (3 pair and 2 pair)
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winner = Steve;
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Club)
+                }),
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Four, Card.Suits.Club),
                     new Card(Card.Numbers.Five, Card.Suits.Club)
                 }),
                 new Hand(Carry, new List<Card>()
                 {
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
                     new Card(Card.Numbers.Jack, Card.Suits.Club),
-                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Diamond),
                     new Card(Card.Numbers.Jack, Card.Suits.Club),
                     new Card(Card.Numbers.Two, Card.Suits.Club)
+                })
+            };
+            return dataSet;
+        }
+
+        public static DataSet GetHands_TwoPair()  // winner with 2 pairs
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winner = John;
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Five, Card.Suits.Club)
+                }),
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Queen, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Two, Card.Suits.Club)
+                }),
+                new Hand(Carry, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Ace, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond)
+                })
+            };
+            return dataSet;
+        }
+
+        public static DataSet GetHands_Flush()  // winner with flush
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winner = Steve;
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Five, Card.Suits.Club),
+                    new Card(Card.Numbers.Six, Card.Suits.Club)
+                }),
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Queen, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Two, Card.Suits.Club)
+                }),
+                new Hand(Carry, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Ace, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond)
+                })
+            };
+            return dataSet;
+        }
+
+        public static DataSet GetHands_FlushWithTieBreaker()  // winner with flush and a tie breaker
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winner = John;
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Five, Card.Suits.Club),
+                    new Card(Card.Numbers.Six, Card.Suits.Club)
+                }),
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Queen, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Three, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Three, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond)
+                }),
+                new Hand(Carry, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Ace, Card.Suits.Club),
+                    new Card(Card.Numbers.Two, Card.Suits.Diamond)
                 })
             };
             return dataSet;

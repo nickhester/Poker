@@ -9,9 +9,13 @@ namespace Poker.WinCriteria
     public class LikeOfAKind : IWinCriteria
     {
         int numberRequirement;
-        public LikeOfAKind(int num)
+        int numberRequirementSecond;
+
+        // "num" is the number of cards matching, and "numSecond" is whether to look for an optional match in the remaining cards
+        public LikeOfAKind(int num, int numSecond = -1)
         {
             numberRequirement = num;
+            numberRequirementSecond = numSecond;
         }
 
         public Hand Compare(List<Hand> handsToCompare)
@@ -32,6 +36,19 @@ namespace Poker.WinCriteria
                 Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with no winner.");
                 return null;
             }
+            else if (numberRequirementSecond > 0)   // if should look for a 2nd match in remaining cards
+            {
+                Logger.Log($"Checking for secondary match of {numberRequirementSecond} cards.");
+                LikeOfAKind winCriteriaForRemaining = new LikeOfAKind(numberRequirementSecond);
+
+                // new copy of hands, but using the remaining cards as the primary cards
+                List<Hand> localCopyOfHands = new List<Hand>();
+                foreach (var winningHand in winningHands)
+                {
+                    localCopyOfHands.Add(new Hand(winningHand.Name, winningHand.RemainingCards));
+                }
+                return winCriteriaForRemaining.Compare(localCopyOfHands);
+            }
             else if (numWinners == 1)  //  or if there's a single winner, return results
             {
                 Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with a winner (immediately).");
@@ -47,7 +64,7 @@ namespace Poker.WinCriteria
             }
 
             // break the tie with remaining cards
-            List<Hand> winningRemainingTiedHands = Hand.HighestRemainingCardValue(winningTiedHands);
+            List<Hand> winningRemainingTiedHands = WinCriteriaHelpers.FindHighestHandByRemainingCards(winningTiedHands);
             if (winningRemainingTiedHands.Count == 1)
             {
                 Logger.Log($"Exiting criteria check for {numberRequirement} of a kind with a winner (tie breaker with higher kickers).");
