@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker
 {
@@ -65,7 +63,14 @@ namespace Poker
                 DataSets.GetHands_StraightWithTie(),            // 20
                 DataSets.GetHands_StraightFlush(),
                 DataSets.GetHands_StraightFlushWithTieBreaker(),
-                DataSets.GetHands_StraightFlushWithTie()
+                DataSets.GetHands_StraightFlushWithTie(),
+                DataSets.GetHands_HighCard(),
+                DataSets.GetHands_HighCardTieBreaker(),
+                DataSets.GetHands_HighCardTie(),
+                DataSets.GetHands_OneHand(),
+                DataSets.GetHands_TwoCards(),
+                DataSets.GetHands_OneCard(),
+                DataSets.GetHands_TenCards()                    // 30
             };
 
             for (int i = 0; i < dataSets.Count; i++)

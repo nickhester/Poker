@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker
 {
@@ -23,16 +21,16 @@ namespace Poker
         {
             List<IWinCriteria> winCriteria = new List<IWinCriteria>()
             {
-                new LikeOfAKind(5),     // fiveOfAKind,
+                new LikeOfAKind(5),     // fiveOfAKind
                 new StraightFlush(),    // straight flush
-                new LikeOfAKind(4),     // fourOfAKind,
+                new LikeOfAKind(4),     // fourOfAKind
                 new LikeOfAKind(3, 2),  // fullHouse
                 new Flush(),            // flush
                 new Straight(),         // straight
-                new LikeOfAKind(3),     // threeOfAKind,
+                new LikeOfAKind(3),     // threeOfAKind
                 new LikeOfAKind(2, 2),  // twoPair
-                new LikeOfAKind(2)      // onePair
-                                        // high card
+                new LikeOfAKind(2),     // onePair
+                new HighCard()          // high card        // HighCard should always have one or more winners
         };
 
             foreach (var criterion in winCriteria)

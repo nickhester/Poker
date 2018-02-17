@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranker.cs" />
     <Compile Include="WinCriteria\Flush.cs" />
+    <Compile Include="WinCriteria\HighCard.cs" />
     <Compile Include="WinCriteria\IWinCriteria.cs" />
     <Compile Include="WinCriteria\LikeOfAKind.cs" />
     <Compile Include="WinCriteria\StraightFlush.cs" />
