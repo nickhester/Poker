@@ -19,10 +19,12 @@ namespace Poker
             if (runTests)
             {
                 RunTests(ranker);
+                Console.ReadLine();
+                return;
             }
 
             string winType = "";
-            List<Hand> winningHands = ranker.DetermineWinner(DataSets.GetHands_TwoOfAKindTieRemainingCards().Hands, ref winType);
+            List<Hand> winningHands = ranker.DetermineWinner(DataSets.GetHands_OnePairTieRemainingCards().Hands, ref winType);
 
             if (winningHands == null)
             {
@@ -40,11 +42,11 @@ namespace Poker
         {
             List<DataSet> dataSets = new List<DataSet>()
             {
-                DataSets.GetHands_TwoOfAKind(),
-                DataSets.GetHands_TwoOfAKindTieWinningCards(),
-                DataSets.GetHands_TwoOfAKindTieRemainingCards(),
-                DataSets.GetHands_TwoOfAKindWithJoker(),
-                DataSets.GetHands_TwoOfAKindWithTie(),
+                DataSets.GetHands_OnePair(),
+                DataSets.GetHands_OnePairTieWinningCards(),
+                DataSets.GetHands_OnePairTieRemainingCards(),
+                DataSets.GetHands_OnePairWithJoker(),
+                DataSets.GetHands_OnePairWithTie(),
                 DataSets.GetHands_ThreeOfAKind(),
                 DataSets.GetHands_FourOfAKind(),
                 DataSets.GetHands_FiveOfAKind(),
@@ -56,9 +58,14 @@ namespace Poker
                 DataSets.GetHands_Flush(),
                 DataSets.GetHands_FlushWithTieBreaker(),
                 DataSets.GetHands_FlushWithAJoker(),
+                DataSets.GetHands_FlushWithTie(),
                 DataSets.GetHands_Straight(),
                 DataSets.GetHands_StraightWithAJoker(),
-                DataSets.GetHands_StraightWithTieBreaker()
+                DataSets.GetHands_StraightWithTieBreaker(),
+                DataSets.GetHands_StraightWithTie(),            // 20
+                DataSets.GetHands_StraightFlush(),
+                DataSets.GetHands_StraightFlushWithTieBreaker(),
+                DataSets.GetHands_StraightFlushWithTie()
             };
 
             for (int i = 0; i < dataSets.Count; i++)

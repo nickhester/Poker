@@ -17,6 +17,7 @@ namespace Poker.WinCriteria
             // first check to see if each one qualifies at all
             for (int i = 0; i < handsToCompare.Count; i++)
             {
+                handsToCompare[i].Result = Ranker.CompareResult.None;
                 CheckIfQualifies(handsToCompare[i]);
             }
 
@@ -36,7 +37,7 @@ namespace Poker.WinCriteria
 
             // try to break the tie with best winning cards
             List<Hand> winningTiedHands = DetermineHighestWinners(winningHands);
-            if (winningTiedHands.Count == 1)
+            if (winningTiedHands.Count > 0)
             {
                 Logger.Log($"Exiting criteria check for {nameof(Flush)} with a winner (tie breaker with higher cards).");
                 return winningTiedHands;

@@ -13,11 +13,11 @@ namespace Poker
         public static string Carry = "Carry";
         public static string Mary = "Mary";
 
-        public static DataSet GetHands_TwoOfAKindTieRemainingCards()  // winner with 2 of a kind, and higher remaining cards (kickers)
+        public static DataSet GetHands_OnePairTieRemainingCards()  // winner with one pair, and higher remaining cards (kickers)
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "TwoOfAKind";
+            dataSet.IntendedWin = "OnePair";
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()       
@@ -48,11 +48,11 @@ namespace Poker
             return dataSet;
         }
 
-        public static DataSet GetHands_TwoOfAKindTieWinningCards()  // winner with 2 of a kind, and higher winning cards
+        public static DataSet GetHands_OnePairTieWinningCards()  // winner with one pair, and higher winning cards
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "TwoOfAKind";
+            dataSet.IntendedWin = "OnePair";
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -75,11 +75,11 @@ namespace Poker
             return dataSet;
         }
 
-        public static DataSet GetHands_TwoOfAKindWithJoker()  // winner with 2 of a kind, using a joker
+        public static DataSet GetHands_OnePairWithJoker()  // winner with one pair, using a joker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "TwoOfAKind";
+            dataSet.IntendedWin = "OnePair";
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -102,11 +102,11 @@ namespace Poker
             return dataSet;
         }
 
-        public static DataSet GetHands_TwoOfAKindWithTie()  // winner with 2 of a kind with a complete tie
+        public static DataSet GetHands_OnePairWithTie()  // winner with one pair with a complete tie
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John + "," + Mary;
-            dataSet.IntendedWin = "TwoOfAKind";
+            dataSet.IntendedWin = "OnePair";
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -137,11 +137,11 @@ namespace Poker
             return dataSet;
         }
 
-        public static DataSet GetHands_TwoOfAKind()  // winner with 2 of a kind
+        public static DataSet GetHands_OnePair()  // winner with one pair
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Mary;
-            dataSet.IntendedWin = "TwoOfAKind";
+            dataSet.IntendedWin = "OnePair";
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -523,7 +523,7 @@ namespace Poker
                 new Hand(Steve, new List<Card>()
                 {
                     new Card(Card.Numbers.Two, Card.Suits.Club),
-                    new Card(Card.Numbers.Three, Card.Suits.Heart),
+                    new Card(Card.Numbers.Two, Card.Suits.Heart),
                     new Card(Card.Numbers.Four, Card.Suits.Club),
                     new Card(Card.Numbers.Five, Card.Suits.Club),
                     new Card(Card.Numbers.Six, Card.Suits.Club)
@@ -548,6 +548,33 @@ namespace Poker
             return dataSet;
         }
 
+        public static DataSet GetHands_FlushWithTie()  // winner with flush and a tie
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winners = Steve + "," + John;
+            dataSet.IntendedWin = "Flush";
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Five, Card.Suits.Club),
+                    new Card(Card.Numbers.Seven, Card.Suits.Club)
+                }),
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Club),
+                    new Card(Card.Numbers.Three, Card.Suits.Club),
+                    new Card(Card.Numbers.Four, Card.Suits.Club),
+                    new Card(Card.Numbers.Five, Card.Suits.Club),
+                    new Card(Card.Numbers.Seven, Card.Suits.Club)
+                })
+            };
+            return dataSet;
+        }
+
         public static DataSet GetHands_Straight()  // winner with straight
         {
             DataSet dataSet = new DataSet();
@@ -566,10 +593,10 @@ namespace Poker
                 new Hand(Steve, new List<Card>()
                 {
                     new Card(Card.Numbers.Seven, Card.Suits.Club),
-                    new Card(Card.Numbers.Jack, Card.Suits.Club),
-                    new Card(Card.Numbers.Queen, Card.Suits.Club),
-                    new Card(Card.Numbers.Ace, Card.Suits.Club),
-                    new Card(Card.Numbers.Two, Card.Suits.Diamond)
+                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Nine, Card.Suits.Club),
+                    new Card(Card.Numbers.Ten, Card.Suits.Diamond)
                 }),
                 new Hand(Carry, new List<Card>()
                 {
@@ -653,6 +680,128 @@ namespace Poker
             return dataSet;
         }
 
-        // todo: add pure tie
+        public static DataSet GetHands_StraightWithTie()  // winner with straight and a tie
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winners = John + "," + Steve;
+            dataSet.IntendedWin = "Straight";
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Nine, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Ten, Card.Suits.Diamond)
+                }),
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Nine, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Ten, Card.Suits.Diamond)
+                })
+            };
+            return dataSet;
+        }
+
+        public static DataSet GetHands_StraightFlush()  // winner with straight flush
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winners = John;
+            dataSet.IntendedWin = "StraightFlush";
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Eight, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Nine, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Jack, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Ten, Card.Suits.Diamond)
+                }),
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Nine, Card.Suits.Heart),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Ten, Card.Suits.Diamond)
+                }),
+                new Hand(Carry, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Heart),
+                    new Card(Card.Numbers.Eight, Card.Suits.Heart),
+                    new Card(Card.Numbers.Nine, Card.Suits.Heart),
+                    new Card(Card.Numbers.Jack, Card.Suits.Heart),
+                    new Card(Card.Numbers.Queen, Card.Suits.Heart)
+                })
+            };
+            return dataSet;
+        }
+
+        public static DataSet GetHands_StraightFlushWithTieBreaker()  // winner with straight flush and a tie breaker
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winners = Steve;
+            dataSet.IntendedWin = "StraightFlush";
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Seven, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Eight, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Nine, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Jack, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Ten, Card.Suits.Diamond)
+                }),
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Ten, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Nine, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Queen, Card.Suits.Club)
+                }),
+                new Hand(Carry, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Heart),
+                    new Card(Card.Numbers.Eight, Card.Suits.Heart),
+                    new Card(Card.Numbers.Nine, Card.Suits.Heart),
+                    new Card(Card.Numbers.Jack, Card.Suits.Heart),
+                    new Card(Card.Numbers.Queen, Card.Suits.Heart)
+                })
+            };
+            return dataSet;
+        }
+
+        public static DataSet GetHands_StraightFlushWithTie()  // winner with straight flush and a tie
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winners = John + "," + Steve;
+            dataSet.IntendedWin = "StraightFlush";
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Ten, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Nine, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Queen, Card.Suits.Club)
+                }),
+                new Hand(Steve, new List<Card>()
+                {
+                    new Card(Card.Numbers.Ten, Card.Suits.Club),
+                    new Card(Card.Numbers.Eight, Card.Suits.Club),
+                    new Card(Card.Numbers.Nine, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Queen, Card.Suits.Club)
+                })
+            };
+            return dataSet;
+        }
     }
 }

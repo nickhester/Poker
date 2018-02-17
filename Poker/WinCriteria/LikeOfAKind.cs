@@ -13,7 +13,7 @@ namespace Poker.WinCriteria
             get
             {
                 if (numberRequirement == 2 && numberRequirementSecond == -1)
-                    return "TwoOfAKind";
+                    return "OnePair";
                 else if (numberRequirement == 3 && numberRequirementSecond == -1)
                     return "ThreeOfAKind";
                 else if (numberRequirement == 4 && numberRequirementSecond == -1)
@@ -47,6 +47,7 @@ namespace Poker.WinCriteria
             // first check to see if each one qualifies at all
             for (int i = 0; i < handsToCompare.Count; i++)
             {
+                handsToCompare[i].Result = Ranker.CompareResult.None;
                 CheckIfQualifies(handsToCompare[i], numberRequirement);
             }
 
@@ -66,13 +67,12 @@ namespace Poker.WinCriteria
                 List<Hand> localCopyOfHands = new List<Hand>();
                 foreach (var winningHand in winningHands)
                 {
-                    // clear previous win result so it doesn't carry over
-                    winningHand.Result = Ranker.CompareResult.None;
                     localCopyOfHands.Add(new Hand(winningHand.Name, winningHand.RemainingCards));
                 }
                 // check to see if each one qualifies
                 for (int i = 0; i < localCopyOfHands.Count; i++)
                 {
+                    localCopyOfHands[i].Result = Ranker.CompareResult.None;
                     CheckIfQualifies(localCopyOfHands[i], numberRequirementSecond);
                 }
                 // next check if any met criteria
