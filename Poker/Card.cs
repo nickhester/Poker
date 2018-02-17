@@ -11,6 +11,7 @@ namespace Poker
     {
         public enum Suits
         {
+            Wild,
             Diamond,
             Heart,
             Spade,
@@ -69,7 +70,11 @@ namespace Poker
 
         public static bool operator >(Card c1, Card c2)
         {
-            if (c1.Number > c2.Number
+            if (c1.Number == Numbers.Joker && c2.Number == Numbers.Joker)
+            {
+                return false;
+            }
+            else if (c1.Number > c2.Number
                 || c1.Number == Numbers.Joker
                 || c2.Number == Numbers.Joker)
             {
@@ -80,7 +85,11 @@ namespace Poker
 
         public static bool operator <(Card c1, Card c2)
         {
-            if (c1.Number < c2.Number
+            if (c1.Number == Numbers.Joker && c2.Number == Numbers.Joker)
+            {
+                return false;
+            }
+            else if (c1.Number < c2.Number
                 || c1.Number == Numbers.Joker
                 || c2.Number == Numbers.Joker)
             {
@@ -91,9 +100,13 @@ namespace Poker
 
         public int CompareTo(object obj)
         {
-            if (this == (Card)obj)
+            // for the sake of sorting, just use the number value not the card operators
+            int thisValue = (int)this.Number;
+            int objValue = (int)(((Card)obj).Number);
+
+            if (thisValue == objValue)
                 return 0;
-            else if (this > (Card)obj)
+            else if (thisValue > objValue)
                 return 1;
 
             return -1;

@@ -19,14 +19,15 @@ namespace Poker
 
         // list of win criteria
 
-        public Hand DetermineWinner(List<Hand> hands)
+        public List<Hand> DetermineWinner(List<Hand> hands, ref string winType)
         {
             List<IWinCriteria> winCriteria = new List<IWinCriteria>()
             {
                 new LikeOfAKind(5),     // fiveOfAKind,
                 new LikeOfAKind(4),     // fourOfAKind,
                 new LikeOfAKind(3, 2),  // fullHouse
-                new Flush(),            // flush
+                //new Flush(),            // flush
+                //new Straight(),         // straight
                 new LikeOfAKind(3),     // threeOfAKind,
                 new LikeOfAKind(2, 2),  // two pair
                 new LikeOfAKind(2)      // twoOfAKind
@@ -34,12 +35,13 @@ namespace Poker
 
             foreach (var criterion in winCriteria)
             {
-                Hand winningHand = criterion.Compare(hands);
+                List<Hand> winningHands = criterion.Compare(hands);
 
-                // if there's a winning hand, return it
-                if (winningHand != null)
+                // if there are winning hands, return them
+                if (winningHands != null)
                 {
-                    return winningHand;
+                    winType = criterion.WinName;
+                    return winningHands;
                 }
             }
 

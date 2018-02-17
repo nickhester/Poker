@@ -8,6 +8,7 @@ namespace Poker.WinCriteria
 {
     public interface IWinCriteria
     {
-        Hand Compare(List<Hand> handsToCompare);
+        List<Hand> Compare(List<Hand> handsToCompare);
+        string WinName { get; set; }
     }
 }

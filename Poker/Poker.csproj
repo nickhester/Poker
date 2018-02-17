@@ -53,6 +53,7 @@
     <Compile Include="WinCriteria\Flush.cs" />
     <Compile Include="WinCriteria\IWinCriteria.cs" />
     <Compile Include="WinCriteria\LikeOfAKind.cs" />
+    <Compile Include="WinCriteria\Straight.cs" />
     <Compile Include="WinCriteria\WinCriteriaHelpers.cs" />
   </ItemGroup>
   <ItemGroup>

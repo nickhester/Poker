@@ -9,6 +9,7 @@ namespace Poker
     public class DataSet
     {
         public List<Hand> Hands;
-        public string Winner;
+        public string Winners;
+        public string IntendedWin;
     }
 }
