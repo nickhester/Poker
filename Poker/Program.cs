@@ -48,9 +48,10 @@ namespace Poker
                 DataSets.GetHands_ThreeOfAKind(),
                 DataSets.GetHands_FourOfAKind(),
                 DataSets.GetHands_FiveOfAKind(),
+                DataSets.GetHands_FiveOfAKindWithAllJokers(),
                 DataSets.GetHands_FullHouse(),
-                DataSets.GetHands_FullHouseTieBreaker(),
-                DataSets.GetHands_FullHouseWithAJoker(),        // 10
+                DataSets.GetHands_FullHouseTieBreaker(),        // 10
+                DataSets.GetHands_FullHouseWithAJoker(),
                 DataSets.GetHands_TwoPair(),
                 DataSets.GetHands_Flush(),
                 DataSets.GetHands_FlushWithTieBreaker(),

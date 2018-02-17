@@ -50,7 +50,7 @@ namespace Poker.WinCriteria
                 CheckIfQualifies(handsToCompare[i], numberRequirement);
             }
 
-            // next check if any won
+            // next check if any met criteria
             List<Hand> winningHands = handsToCompare.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
             int numWinners = winningHands.Count();
             if (numWinners <= 0)       // if there are no winners, return null
@@ -75,7 +75,7 @@ namespace Poker.WinCriteria
                 {
                     CheckIfQualifies(localCopyOfHands[i], numberRequirementSecond);
                 }
-                // next check if any won
+                // next check if any met criteria
                 List<Hand> secondaryWinningHands = localCopyOfHands.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
                 
                 if (secondaryWinningHands.Count == 0)
@@ -139,8 +139,6 @@ namespace Poker.WinCriteria
         // the cards should be compared in the case of a tie
         void CheckIfQualifies(Hand hand, int numRequirement)
         {
-
-
             // sort highest first
             hand.Cards.Sort();
             hand.Cards.Reverse();
@@ -163,6 +161,16 @@ namespace Poker.WinCriteria
                     return;
                 }
             }
+
+            // check special case for all jokers
+            if (hand.Cards.All(x => x.Number == Card.Numbers.Joker))
+            {
+                hand.Result = Ranker.CompareResult.Win;
+                hand.WinningCards = hand.Cards;
+                hand.RemainingCards = new List<Card>();
+                return;
+            }
+
             return;
         }
 

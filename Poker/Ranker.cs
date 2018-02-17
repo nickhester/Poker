@@ -26,7 +26,7 @@ namespace Poker
                 new LikeOfAKind(5),     // fiveOfAKind,
                 new LikeOfAKind(4),     // fourOfAKind,
                 new LikeOfAKind(3, 2),  // fullHouse
-                //new Flush(),            // flush
+                new Flush(),            // flush
                 //new Straight(),         // straight
                 new LikeOfAKind(3),     // threeOfAKind,
                 new LikeOfAKind(2, 2),  // two pair

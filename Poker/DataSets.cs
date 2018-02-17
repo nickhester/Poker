@@ -277,6 +277,33 @@ namespace Poker
             return dataSet;
         }
 
+        public static DataSet GetHands_FiveOfAKindWithAllJokers()  // winner with full house (3 pair and 2 pair), with a joker
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Winners = John;
+            dataSet.IntendedWin = "FiveOfAKind";
+            dataSet.Hands = new List<Hand>()
+            {
+                new Hand(John, new List<Card>()
+                {
+                    new Card(Card.Numbers.Joker, Card.Suits.Wild),
+                    new Card(Card.Numbers.Joker, Card.Suits.Wild),
+                    new Card(Card.Numbers.Joker, Card.Suits.Wild),
+                    new Card(Card.Numbers.Joker, Card.Suits.Wild),
+                    new Card(Card.Numbers.Joker, Card.Suits.Wild)
+                }),
+                new Hand(Carry, new List<Card>()
+                {
+                    new Card(Card.Numbers.Two, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Club),
+                    new Card(Card.Numbers.Jack, Card.Suits.Diamond),
+                    new Card(Card.Numbers.Joker, Card.Suits.Wild),
+                    new Card(Card.Numbers.Two, Card.Suits.Club)
+                })
+            };
+            return dataSet;
+        }
+        
         public static DataSet GetHands_FullHouse()  // winner with full house (3 pair and 2 pair)
         {
             DataSet dataSet = new DataSet();
@@ -381,7 +408,6 @@ namespace Poker
             };
             return dataSet;
         }
-
         public static DataSet GetHands_TwoPair()  // winner with 2 pairs
         {
             DataSet dataSet = new DataSet();
