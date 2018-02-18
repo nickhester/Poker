@@ -6,8 +6,8 @@ namespace Poker
 {
     public class Hand
     {
-        public string Name;
-        public List<Card> Cards = new List<Card>();
+        public readonly string Name;
+        public readonly List<Card> Cards = new List<Card>();
         
         public Hand(string name, List<Card> cards)
         {

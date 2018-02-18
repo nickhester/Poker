@@ -4,7 +4,7 @@ namespace Poker.WinCriteria
 {
     public class HandWrapper
     {
-        public Hand Hand;
+        public readonly Hand Hand;
         public Ranker.CompareResult Result;
         public List<Card> WorkingCards;
         public List<Card> WinningCards;
