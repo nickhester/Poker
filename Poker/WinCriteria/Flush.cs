@@ -6,7 +6,7 @@ namespace Poker.WinCriteria
 {
     public class Flush : IWinCriteria
     {
-        public string WinName { get { return "Flush"; } set { } }
+        public string WinName { get { return Ranker.WinType.Flush.ToString(); } set { } }
 
         public List<Hand> Compare(List<Hand> handsToCompare)
         {

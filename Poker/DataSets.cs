@@ -14,7 +14,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve;
-            dataSet.IntendedWin = "OnePair";
+            dataSet.IntendedWin = Ranker.WinType.OnePair.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -48,7 +48,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "OnePair";
+            dataSet.IntendedWin = Ranker.WinType.OnePair.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -74,7 +74,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "OnePair";
+            dataSet.IntendedWin = Ranker.WinType.OnePair.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()       
@@ -108,7 +108,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "OnePair";
+            dataSet.IntendedWin = Ranker.WinType.OnePair.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -134,7 +134,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John + "," + Steve;
-            dataSet.IntendedWin = "OnePair";
+            dataSet.IntendedWin = Ranker.WinType.OnePair.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -168,7 +168,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve;
-            dataSet.IntendedWin = "ThreeOfAKind";
+            dataSet.IntendedWin = Ranker.WinType.ThreeOfAKind.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()       
@@ -202,7 +202,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "FourOfAKind";
+            dataSet.IntendedWin = Ranker.WinType.FourOfAKind.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -236,7 +236,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve;
-            dataSet.IntendedWin = "FiveOfAKind";
+            dataSet.IntendedWin = Ranker.WinType.FiveOfAKind.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -270,7 +270,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "FiveOfAKind";
+            dataSet.IntendedWin = Ranker.WinType.FiveOfAKind.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -296,7 +296,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve;
-            dataSet.IntendedWin = "FullHouse";
+            dataSet.IntendedWin = Ranker.WinType.FullHouse.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -330,7 +330,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "FullHouse";
+            dataSet.IntendedWin = Ranker.WinType.FullHouse.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -364,7 +364,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "FullHouse";
+            dataSet.IntendedWin = Ranker.WinType.FullHouse.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -398,7 +398,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "TwoPair";
+            dataSet.IntendedWin = Ranker.WinType.TwoPair.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -432,7 +432,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve;
-            dataSet.IntendedWin = "Flush";
+            dataSet.IntendedWin = Ranker.WinType.Flush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -466,7 +466,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "Flush";
+            dataSet.IntendedWin = Ranker.WinType.Flush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -500,7 +500,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "Flush";
+            dataSet.IntendedWin = Ranker.WinType.Flush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -534,7 +534,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve + "," + John;
-            dataSet.IntendedWin = "Flush";
+            dataSet.IntendedWin = Ranker.WinType.Flush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(Steve, new List<Card>()
@@ -560,7 +560,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "Straight";
+            dataSet.IntendedWin = Ranker.WinType.Straight.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -594,7 +594,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "Straight";
+            dataSet.IntendedWin = Ranker.WinType.Straight.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -628,7 +628,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve;
-            dataSet.IntendedWin = "Straight";
+            dataSet.IntendedWin = Ranker.WinType.Straight.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -662,7 +662,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John + "," + Steve;
-            dataSet.IntendedWin = "Straight";
+            dataSet.IntendedWin = Ranker.WinType.Straight.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -688,7 +688,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "StraightFlush";
+            dataSet.IntendedWin = Ranker.WinType.StraightFlush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -722,7 +722,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Steve;
-            dataSet.IntendedWin = "StraightFlush";
+            dataSet.IntendedWin = Ranker.WinType.StraightFlush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -756,7 +756,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John + "," + Steve;
-            dataSet.IntendedWin = "StraightFlush";
+            dataSet.IntendedWin = Ranker.WinType.StraightFlush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -782,7 +782,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "HighCard";
+            dataSet.IntendedWin = Ranker.WinType.HighCard.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -808,7 +808,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "HighCard";
+            dataSet.IntendedWin = Ranker.WinType.HighCard.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -834,7 +834,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John + "," + Carry;
-            dataSet.IntendedWin = "HighCard";
+            dataSet.IntendedWin = Ranker.WinType.HighCard.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -860,7 +860,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = John;
-            dataSet.IntendedWin = "HighCard";
+            dataSet.IntendedWin = Ranker.WinType.HighCard.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -878,7 +878,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "HighCard";
+            dataSet.IntendedWin = Ranker.WinType.HighCard.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -898,7 +898,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "StraightFlush";
+            dataSet.IntendedWin = Ranker.WinType.StraightFlush.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()
@@ -916,7 +916,7 @@ namespace Poker
         {
             DataSet dataSet = new DataSet();
             dataSet.Winners = Carry;
-            dataSet.IntendedWin = "HighCard";
+            dataSet.IntendedWin = Ranker.WinType.HighCard.ToString();
             dataSet.Hands = new List<Hand>()
             {
                 new Hand(John, new List<Card>()

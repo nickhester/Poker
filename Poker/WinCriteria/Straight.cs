@@ -6,7 +6,7 @@ namespace Poker.WinCriteria
 {
     public class Straight : IWinCriteria
     {
-        public string WinName { get { return "Straight"; } set { } }
+        public string WinName { get { return Ranker.WinType.Straight.ToString(); } set { } }
 
         public List<Hand> Compare(List<Hand> handsToCompare)
         {

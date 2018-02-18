@@ -6,7 +6,7 @@ namespace Poker.WinCriteria
 {
     public class StraightFlush : IWinCriteria
     {
-        public string WinName { get { return "StraightFlush"; } set { } }
+        public string WinName { get { return Ranker.WinType.StraightFlush.ToString(); } set { } }
 
         public List<Hand> Compare(List<Hand> handsToCompare)
         {

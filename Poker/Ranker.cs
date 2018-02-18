@@ -15,8 +15,20 @@ namespace Poker
             Tie
         }
 
-        // list of win criteria
-
+        public enum WinType
+        {
+            FiveOfAKind,
+            StraightFlush,
+            FourOfAKind,
+            FullHouse,
+            Flush,
+            Straight,
+            ThreeOfAKind,
+            TwoPair,
+            OnePair,
+            HighCard
+        }
+        
         public List<Hand> DetermineWinner(List<Hand> hands, ref string winType)
         {
             List<IWinCriteria> winCriteria = new List<IWinCriteria>()

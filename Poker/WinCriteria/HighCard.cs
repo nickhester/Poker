@@ -6,7 +6,7 @@ namespace Poker.WinCriteria
 {
     public class HighCard : IWinCriteria
     {
-        public string WinName { get { return "HighCard"; } set { } }
+        public string WinName { get { return Ranker.WinType.HighCard.ToString(); } set { } }
 
         public List<Hand> Compare(List<Hand> handsToCompare)
         {

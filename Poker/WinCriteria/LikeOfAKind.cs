@@ -11,17 +11,17 @@ namespace Poker.WinCriteria
             get
             {
                 if (numberRequirement == 2 && numberRequirementSecond == -1)
-                    return "OnePair";
+                    return Ranker.WinType.OnePair.ToString();
                 else if (numberRequirement == 3 && numberRequirementSecond == -1)
-                    return "ThreeOfAKind";
+                    return Ranker.WinType.ThreeOfAKind.ToString();
                 else if (numberRequirement == 4 && numberRequirementSecond == -1)
-                    return "FourOfAKind";
+                    return Ranker.WinType.FourOfAKind.ToString();
                 else if (numberRequirement == 5 && numberRequirementSecond == -1)
-                    return "FiveOfAKind";
+                    return Ranker.WinType.FiveOfAKind.ToString();
                 else if (numberRequirement == 3 && numberRequirementSecond == 2)
-                    return "FullHouse";
+                    return Ranker.WinType.FullHouse.ToString();
                 else if (numberRequirement == 2 && numberRequirementSecond == 2)
-                    return "TwoPair";
+                    return Ranker.WinType.TwoPair.ToString();
                 else
                     return (numberRequirement + "of a kind");
             }
