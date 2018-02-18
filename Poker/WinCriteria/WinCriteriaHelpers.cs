@@ -6,7 +6,7 @@ namespace Poker.WinCriteria
 {
     public static class WinCriteriaHelpers
     {
-        public static List<Hand> FindHighestHandByRemainingCards(List<Hand> hands)
+        public static List<HandWrapper> FindHighestHandByRemainingCards(List<HandWrapper> hands)
         {
             // sort remaining cards
             hands.ForEach(x => x.RemainingCards.Sort());

@@ -8,10 +8,6 @@ namespace Poker
     {
         public string Name;
         public List<Card> Cards = new List<Card>();
-
-        public Ranker.CompareResult Result;
-        public List<Card> WinningCards;
-        public List<Card> RemainingCards;
         
         public Hand(string name, List<Card> cards)
         {

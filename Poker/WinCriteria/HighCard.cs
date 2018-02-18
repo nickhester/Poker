@@ -12,14 +12,18 @@ namespace Poker.WinCriteria
         {
             Logger.Log($"Entering criteria check for {nameof(HighCard)}.");
 
-            // put all cards into remaining cards list so they can be evaluated like a tie-breaker
-            handsToCompare.ForEach(x => x.RemainingCards = x.Cards);
-            handsToCompare = WinCriteriaHelpers.FindHighestHandByRemainingCards(handsToCompare);
+            // create the hand wrappers from the given hands
+            List<HandWrapper> handWrappers = new List<HandWrapper>();
+            handsToCompare.ForEach(x => handWrappers.Add(new HandWrapper(x)));
 
-            if (handsToCompare.Count > 0)
+            // put all cards into remaining cards list so they can be evaluated like a tie-breaker
+            handWrappers.ForEach(x => x.RemainingCards = x.WorkingCards);
+            handWrappers = WinCriteriaHelpers.FindHighestHandByRemainingCards(handWrappers);
+
+            if (handWrappers.Count > 0)
             {
                 Logger.Log($"Exiting criteria check for {nameof(HighCard)} with winner(s).");
-                return handsToCompare;
+                return handWrappers.Select(x => x.Hand).ToList();
             }
 
             Logger.Log($"Exiting criteria check for {nameof(HighCard)} with no winner.");

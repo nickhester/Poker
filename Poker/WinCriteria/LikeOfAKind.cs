@@ -42,16 +42,20 @@ namespace Poker.WinCriteria
         {
             Logger.Log($"Entering criteria check for {WinName} with {handsToCompare.Count} hands.");
 
+            // create the hand wrappers from the given hands
+            List<HandWrapper> handWrappers = new List<HandWrapper>();
+            handsToCompare.ForEach(x => handWrappers.Add(new HandWrapper(x)));
+
             // first check to see if each one qualifies at all
-            for (int i = 0; i < handsToCompare.Count; i++)
+            for (int i = 0; i < handWrappers.Count; i++)
             {
-                handsToCompare[i].Result = Ranker.CompareResult.None;
-                CheckIfQualifies(handsToCompare[i], numberRequirement);
+                handWrappers[i].Result = Ranker.CompareResult.None;
+                CheckIfQualifies(handWrappers[i], numberRequirement);
             }
 
             // next check if any met criteria
-            List<Hand> winningHands = handsToCompare.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
-            int numWinners = winningHands.Count();
+            List<HandWrapper> winningHandWrappers = handWrappers.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
+            int numWinners = winningHandWrappers.Count();
             if (numWinners <= 0)       // if there are no winners, return null
             {
                 Logger.Log($"Exiting criteria check for {WinName} with no winner.");
@@ -61,72 +65,72 @@ namespace Poker.WinCriteria
             {
                 Logger.Log($"Checking for secondary match of {numberRequirementSecond} cards.");
 
-                // new copy of hands, but using the remaining cards as the primary cards
-                List<Hand> localCopyOfHands = new List<Hand>();
-                foreach (var winningHand in winningHands)
+                // copy only remaining cards to working card list
+                List<HandWrapper> localCopyOfHands = new List<HandWrapper>();
+                foreach (var winningHand in winningHandWrappers)
                 {
-                    localCopyOfHands.Add(new Hand(winningHand.Name, winningHand.RemainingCards));
+                    localCopyOfHands.Add(new HandWrapper(new Hand(winningHand.Hand.Name, winningHand.RemainingCards)));
                 }
+
                 // check to see if each one qualifies
                 for (int i = 0; i < localCopyOfHands.Count; i++)
                 {
-                    localCopyOfHands[i].Result = Ranker.CompareResult.None;
                     CheckIfQualifies(localCopyOfHands[i], numberRequirementSecond);
                 }
                 // next check if any met criteria
-                List<Hand> secondaryWinningHands = localCopyOfHands.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
+                List<HandWrapper> secondaryWinningHandWrappers = localCopyOfHands.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
                 
-                if (secondaryWinningHands.Count == 0)
+                if (secondaryWinningHandWrappers.Count == 0)
                 {
                     Logger.Log($"Exiting criteria check for {WinName} with no winner.");
                     return null;
                 }
 
                 numWinners = 0;
-                for (int i = 0; i < winningHands.Count; i++)
+                for (int i = 0; i < winningHandWrappers.Count; i++)
                 {
                     // if there's a primary and a secondary winning hand from the same player,
                     // put each one in its respective winning/remaining lists to be compared as a final tie-breaker
-                    Hand secondaryHand = secondaryWinningHands.SingleOrDefault(x => x.Name == winningHands[i].Name);
-                    if (secondaryHand == null)
+                    HandWrapper secondaryHandWrapper = secondaryWinningHandWrappers.SingleOrDefault(x => x.Hand.Name == winningHandWrappers[i].Hand.Name);
+                    if (secondaryHandWrapper == null)
                     {
                         // remove from winning hand list if there isn't a matching secondary winning hand list
-                        winningHands.RemoveAt(i);
+                        winningHandWrappers.RemoveAt(i);
                         i--;
                         continue;
                     }
 
                     numWinners++;
-                    winningHands[i].WinningCards = new List<Card>()
+                    winningHandWrappers[i].WinningCards = new List<Card>()
                     {
-                        winningHands[i].WinningCards.First(x => x.Number != Card.Numbers.Joker)
+                        winningHandWrappers[i].WinningCards.First(x => x.Number != Card.Numbers.Joker)
                     };
-                    winningHands[i].RemainingCards = new List<Card>()
+                    winningHandWrappers[i].RemainingCards = new List<Card>()
                     {
-                        secondaryHand.WinningCards.First(x => x.Number != Card.Numbers.Joker)
+                        secondaryHandWrapper.WinningCards.First(x => x.Number != Card.Numbers.Joker)
                     };
                 }
             }
             else if (numWinners == 1)  //  or if there's a single winner, return results
             {
                 Logger.Log($"Exiting criteria check for {WinName} with a winner (immediately).");
-                return winningHands;
+                return winningHandWrappers.Select(x => x.Hand).ToList();
             }
 
             // try to break the tie with best winning cards
-            List<Hand> winningTiedHands = DetermineHighestWinners(winningHands);
-            if (winningTiedHands.Count == 1)
+            List<HandWrapper> winningTiedHandWrappers = DetermineHighestWinners(winningHandWrappers);
+            if (winningTiedHandWrappers.Count == 1)
             {
                 Logger.Log($"Exiting criteria check for {WinName} with a winner (tie breaker with higher match).");
-                return winningTiedHands;
+                return winningTiedHandWrappers.Select(x => x.Hand).ToList();
             }
 
             // break the tie with remaining cards
-            List<Hand> winningRemainingTiedHands = WinCriteriaHelpers.FindHighestHandByRemainingCards(winningTiedHands);
-            if (winningRemainingTiedHands.Count > 0)
+            List<HandWrapper> winningRemainingTiedHandWrappers = WinCriteriaHelpers.FindHighestHandByRemainingCards(winningTiedHandWrappers);
+            if (winningRemainingTiedHandWrappers.Count > 0)
             {
                 Logger.Log($"Exiting criteria check for {WinName} with winner(s) (tie breaker with higher kickers).");
-                return winningRemainingTiedHands;
+                return winningRemainingTiedHandWrappers.Select(x => x.Hand).ToList();
             }
 
             Logger.Log($"Exiting criteria check for {WinName} with no winner.");
@@ -135,13 +139,13 @@ namespace Poker.WinCriteria
 
         // if it qualifies, this will re-arrange the cards in the hand in the order that
         // the cards should be compared in the case of a tie
-        void CheckIfQualifies(Hand hand, int numRequirement)
+        void CheckIfQualifies(HandWrapper handWrapper, int numRequirement)
         {
             // sort highest first
-            hand.Cards.Sort();
-            hand.Cards.Reverse();
+            handWrapper.WorkingCards.Sort();
+            handWrapper.WorkingCards.Reverse();
 
-            foreach (var card in hand.Cards)
+            foreach (var card in handWrapper.WorkingCards)
             {
                 // don't start with a joker
                 // (or else everything will say it's equivalent and you'll get a false-positive)
@@ -149,30 +153,30 @@ namespace Poker.WinCriteria
                     continue;
 
                 // if there's a match of the required number of cards
-                List<Card> qualifyingCards = hand.Cards.Where(x => x == card).ToList();
+                List<Card> qualifyingCards = handWrapper.WorkingCards.Where(x => x == card).ToList();
                 if (qualifyingCards.Count() >= numRequirement)
                 {
-                    hand.Result = Ranker.CompareResult.Win;
+                    handWrapper.Result = Ranker.CompareResult.Win;
                     // organize qualifying hand to check for tie later
-                    hand.WinningCards = qualifyingCards;
-                    hand.RemainingCards = hand.Cards.Where(x => x != card).ToList();
+                    handWrapper.WinningCards = qualifyingCards;
+                    handWrapper.RemainingCards = handWrapper.WorkingCards.Where(x => x != card).ToList();
                     return;
                 }
             }
 
             // check special case for all jokers
-            if (hand.Cards.All(x => x.Number == Card.Numbers.Joker))
+            if (handWrapper.WorkingCards.All(x => x.Number == Card.Numbers.Joker))
             {
-                hand.Result = Ranker.CompareResult.Win;
-                hand.WinningCards = hand.Cards;
-                hand.RemainingCards = new List<Card>();
+                handWrapper.Result = Ranker.CompareResult.Win;
+                handWrapper.WinningCards = handWrapper.WorkingCards;
+                handWrapper.RemainingCards = new List<Card>();
                 return;
             }
 
             return;
         }
 
-        List<Hand> DetermineHighestWinners(List<Hand> hands)
+        List<HandWrapper> DetermineHighestWinners(List<HandWrapper> hands)
         {
             // get highest card
             Card highestCard = hands.Max(x => x.WinningCards[0]);
