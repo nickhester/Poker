@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Globalization;
 
 namespace Poker
 {
+    // this class represents a single card
     public class Card : IComparable
     {
+        public Numbers Number;
+        public Suits Suit;
+
         public enum Suits
         {
             Error,
@@ -34,15 +37,13 @@ namespace Poker
             Joker = 15,
         }
 
-        public Numbers Number;
-        public Suits Suit;
-
         public Card(Numbers number, Suits suit)
         {
             Number = number;
             Suit = suit;
         }
 
+        // this ctor will parse strings for a number and suit
         public Card(string number, string suit)
         {
             // trim ending 's' so user can use the plural
@@ -114,6 +115,7 @@ namespace Poker
         public int CompareTo(object obj)
         {
             // for the sake of sorting, just use the number value not the card operators
+            // b/c considering Jokers as wild for the sake of sorting causes strange behavior
             int thisValue = (int)this.Number;
             int objValue = (int)(((Card)obj).Number);
 

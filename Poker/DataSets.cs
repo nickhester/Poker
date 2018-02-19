@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Poker
 {
+    // This static class contains pre-set lists of hands to be retrieved when testing
     public static class DataSets
     {
         public static string Steve = "Steve";

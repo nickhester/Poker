@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Poker.WinCriteria
 {
+    // helper methods for Win Criteria
     public static class WinCriteriaHelpers
     {
         public static List<HandWrapper> FindHighestHandByRemainingCards(List<HandWrapper> hands)

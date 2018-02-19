@@ -1,7 +1,5 @@
 ﻿using Poker.WinCriteria;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Poker
 {
@@ -11,8 +9,7 @@ namespace Poker
         {
             None,
             Win,
-            Lose,
-            Tie
+            Lose
         }
 
         public enum WinType
@@ -56,7 +53,6 @@ namespace Poker
                     return winningHands;
                 }
             }
-
             // no winning hand was found
             return null;
         }

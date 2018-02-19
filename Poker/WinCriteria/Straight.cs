@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Poker.WinCriteria
@@ -26,21 +25,20 @@ namespace Poker.WinCriteria
             }
 
             // next check if any met criteria
-            List<HandWrapper> winningHandWrappers = handWrappers.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
-            int numWinners = winningHandWrappers.Count();
-            if (numWinners <= 0)       // if there are no winners, return null
+            handWrappers.RemoveAll(x => x.Result != Ranker.CompareResult.Win);
+            if (!handWrappers.Any())       // if there are no winners, return null
             {
                 Logger.Log($"Exiting criteria check for {nameof(Straight)} with no winner.");
                 return null;
             }
-            else if (numWinners == 1)  //  or if there's a single winner, return results
+            else if (handWrappers.Count() == 1)  //  or if there's a single winner, return results
             {
                 Logger.Log($"Exiting criteria check for {nameof(Straight)} with a winner (immediately).");
-                return winningHandWrappers.Select(x => x.Hand).ToList();
+                return handWrappers.Select(x => x.Hand).ToList();
             }
 
             // try to break the tie with best winning cards
-            List<HandWrapper> winningTiedHandWrappers = DetermineHighestWinners(winningHandWrappers);
+            List<HandWrapper> winningTiedHandWrappers = DetermineHighestWinners(handWrappers);
             if (winningTiedHandWrappers.Count > 0)
             {
                 Logger.Log($"Exiting criteria check for {nameof(Straight)} with a winner (tie breaker with higher cards).");
@@ -55,7 +53,7 @@ namespace Poker.WinCriteria
         // the cards should be compared in the case of a tie
         void CheckIfQualifies(HandWrapper handWrapper)
         {
-            // sort hands low-to-high, and get non-joker cards
+            // sort non-joker cards low-to-high, and count joker cards
             List<Card> nonJokerCards = handWrapper.WorkingCards.Where(x => x.Number != Card.Numbers.Joker).ToList();
             nonJokerCards.Sort();
             int numJokers = handWrapper.WorkingCards.Count(x => x.Number == Card.Numbers.Joker);
@@ -75,14 +73,14 @@ namespace Poker.WinCriteria
                     return;
                 }
 
-                // see if hand has a joker to fill the gap
+                // see if hand has joker(s) to fill the gap by adding jacks until it runs out
                 int posToInsertJack = 1;
                 while (valueDifference > 1 && numJokers >= valueDifference - 1)
                 {
                     valueDifference--;
                     numJokers--;
 
-                    // insert a card of the correct value where the joker is being used
+                    // insert a card of the correct value where the joker is being used (suit doesn't matter)
                     nonJokerCards.Insert(i + posToInsertJack,
                         new Card((Card.Numbers)((int)nonJokerCards[i].Number + posToInsertJack), Card.Suits.Club));
 

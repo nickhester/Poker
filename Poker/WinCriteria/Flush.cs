@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Poker.WinCriteria
@@ -26,21 +25,20 @@ namespace Poker.WinCriteria
             }
 
             // next check if any met criteria
-            List<HandWrapper> winningHandWrappers = handWrappers.Where(x => x.Result == Ranker.CompareResult.Win).ToList();
-            int numWinners = winningHandWrappers.Count();
-            if (numWinners <= 0)       // if there are no winners, return null
+            handWrappers.RemoveAll(x => x.Result != Ranker.CompareResult.Win);
+            if (!handWrappers.Any())       // if there are no winners, return null
             {
                 Logger.Log($"Exiting criteria check for {nameof(Flush)} with no winner.");
                 return null;
             }
-            else if (numWinners == 1)  //  or if there's a single winner, return results
+            else if (handWrappers.Count() == 1)  //  or if there's a single winner, return results
             {
                 Logger.Log($"Exiting criteria check for {nameof(Flush)} with a winner (immediately).");
-                return winningHandWrappers.Select(x => x.Hand).ToList();
+                return handWrappers.Select(x => x.Hand).ToList();
             }
 
             // try to break the tie with best winning cards
-            List<HandWrapper> winningTiedHands = DetermineHighestWinners(winningHandWrappers);
+            List<HandWrapper> winningTiedHands = DetermineHighestWinners(handWrappers);
             if (winningTiedHands.Count > 0)
             {
                 Logger.Log($"Exiting criteria check for {nameof(Flush)} with a winner (tie breaker with higher cards).");

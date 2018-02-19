@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Poker
 {
+    // this class represents a hand of one player
     public class Hand
     {
         public readonly string Name;
@@ -15,10 +16,11 @@ namespace Poker
             Cards = cards;
         }
 
+        // this ctor will parse a string for a list of cards to create a hand
         public Hand(string name, string cardNames)
         {
             Name = name;
-
+            
             string[] cardNameLists = cardNames.Split(',');
             foreach (var cardName in cardNameLists)
             {
@@ -27,6 +29,7 @@ namespace Poker
                     string trimmedCardName = cardName.Trim();
                     string[] cardNameSplit = trimmedCardName.Split(' ');
 
+                    // if the card name split into more than two parts
                     if (cardNameSplit.Count() != 2)
                     {
                         Console.WriteLine("INPUT ERROR: " + trimmedCardName + " is not a valid card");

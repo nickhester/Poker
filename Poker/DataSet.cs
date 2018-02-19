@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Poker
 {
+    // this class contains the hands, and intended outcomes of a testing dataset
     public class DataSet
     {
         public List<Hand> Hands;

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Poker
 {
+    // this is a minimal logging class so log level can be controlled as an option
     public static class Logger
     {
         public static bool LogDebug = true;
