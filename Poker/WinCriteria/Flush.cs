@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace Poker.WinCriteria
 {
+    // The Flush will determine any hands that meet the criteria that all cards in a hand are of the same suit
+    // and return the ones with the highest number values
     public class Flush : IWinCriteria
     {
         public string WinName { get { return Ranker.WinType.Flush.ToString(); } set { } }

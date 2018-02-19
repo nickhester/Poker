@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Poker.WinCriteria
 {
+    // The LikeOfAKind will determine any hands that meet the criteria N cards of the same number, and return the highest
     public class LikeOfAKind : IWinCriteria
     {
         public string WinName

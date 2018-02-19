@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace Poker.WinCriteria
 {
+    // The Straight will determine any hands that meet the criteria that all card numbers can be ordered sequentially
+    // and will return the hand(s) with the highest value
     public class Straight : IWinCriteria
     {
         public string WinName { get { return Ranker.WinType.Straight.ToString(); } set { } }

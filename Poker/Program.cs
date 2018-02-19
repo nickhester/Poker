@@ -10,30 +10,53 @@ namespace Poker
         {
             Ranker ranker = new Ranker();
 
-            // run test data sets
-            bool runTests = true;
-            Logger.LogDebug = false;
+            Console.WriteLine("1. Enter Cards\n2. Run Tests");
+            int answer;
+            int.TryParse(Console.ReadLine(), out answer);
 
-            if (runTests)
+            Console.WriteLine("Use verbose logging? (Y/N)");
+            string answerLogging = Console.ReadLine().ToUpper();
+
+            // disable debug logging
+            Logger.LogDebug = answerLogging == "Y";
+
+            if (answer == 1)
             {
+                Console.WriteLine("\n\nEnter Player's Cards, each card separated by a comma, and each player separated by a period." +
+                    "\n\nexample: Two Heart, Five Diamond, Jack Spade, Joker Wild, Ace Club. " +
+                    "Seven Diamond, Six Heart, Seven Club, Six Spade, Joker Wild.\n");
+
+                List<Hand> handsFromPlayer = ParseUserHands(Console.ReadLine());
+
+                if (handsFromPlayer == null)
+                {
+                    Console.WriteLine("Exiting program.");
+                    Console.ReadLine();
+                    return;
+                }
+
+                string winType = "";
+                List<Hand> winningHands = ranker.DetermineWinner(handsFromPlayer, ref winType);
+
+                if (winningHands == null)
+                {
+                    Console.WriteLine($"Sorry, no winning hand could be determined.");
+                    Console.ReadLine();
+                    return;
+                }
+
+                Console.WriteLine($"\n--The Hands:--\n{string.Join("\n", handsFromPlayer)}");
+                Console.WriteLine($"\nThe winner is: {string.Join(" & ", winningHands.Select(x => x.Name))} with a {winType}!");
+
+                Console.ReadLine();
+            }
+            else if (answer == 2)
+            {
+                // run test data sets
                 RunTests(ranker);
                 Console.ReadLine();
                 return;
             }
-
-            string winType = "";
-            List<Hand> winningHands = ranker.DetermineWinner(DataSets.GetHands_OnePairTieRemainingCards().Hands, ref winType);
-
-            if (winningHands == null)
-            {
-                Console.WriteLine($"Sorry, no winning hand could be determined.");
-                Console.ReadLine();
-                return;
-            }
-
-            Console.WriteLine($"Congratulations, the winner is: {string.Join(",", winningHands.Select(x => x.Name))}! It was a {winType}");
-
-            Console.ReadLine();
         }
 
         static void RunTests(Ranker ranker)
@@ -95,6 +118,48 @@ namespace Poker
                 // print intended/actual
                 Console.WriteLine($"Test Run {i}: {result} - name: {dataSets[i].Winners}/{winningNames} - " +
                     $"type: {dataSets[i].IntendedWin}/{winType}");
+            }
+        }
+
+        // This method is for manual testing. It's a super quick-and-dirty console user interface that
+        // does not account for all possible defensive scenarios. Don't try to break it.
+        static List<Hand> ParseUserHands(string userHands)
+        {
+            try
+            {
+                string[] userHandList = userHands.Split('.');
+                List<Hand> returnHands = new List<Hand>();
+                for (int i = 0; i < userHandList.Count(); i++)
+                {
+                    if (!String.IsNullOrWhiteSpace(userHandList[i]))
+                        returnHands.Add(new Hand("Player " + (i + 1), userHandList[i].Trim()));
+                }
+
+                // remove any empty hands
+                returnHands.RemoveAll(x => x.Cards.Count < 1);
+
+                // validate that there was at least one hand created, and that all hands are the same length
+                if (returnHands.Count < 1)
+                {
+                    Console.WriteLine("Need at least one valid hand.");
+                }
+                else if (!returnHands.All(x => x.Cards.Count == returnHands[0].Cards.Count))
+                {
+                    Console.WriteLine("Hands must be of equal size.");
+                }
+                else
+                {
+                    if (returnHands[0].Cards.Count != 5)
+                        Console.WriteLine("The hands are of a non-standard size. Unexpected results may occur. Have fun. :)");
+
+                    return returnHands;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Does not compute. Invalid input.");
+                return null;
             }
         }
     }

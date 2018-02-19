@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace Poker.WinCriteria
 {
+    // The StraightFlush will determine any hands that meet the criteria that all cards are of the same suit,
+    // and that all numbers can be ordered sequentially, and will return the hand(s) with the highest value
     public class StraightFlush : IWinCriteria
     {
         public string WinName { get { return Ranker.WinType.StraightFlush.ToString(); } set { } }

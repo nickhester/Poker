@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 
 namespace Poker
 {
@@ -9,6 +7,7 @@ namespace Poker
     {
         public enum Suits
         {
+            Error,
             Wild,
             Diamond,
             Heart,
@@ -18,6 +17,7 @@ namespace Poker
 
         public enum Numbers
         {
+            Error = 0,
             Two = 2,
             Three = 3,
             Four = 4,
@@ -34,13 +34,28 @@ namespace Poker
             Joker = 15,
         }
 
-        public Suits Suit;
         public Numbers Number;
+        public Suits Suit;
 
         public Card(Numbers number, Suits suit)
         {
             Number = number;
             Suit = suit;
+        }
+
+        public Card(string number, string suit)
+        {
+            // trim ending 's' so user can use the plural
+            suit = suit.TrimEnd(new char[] { 's', 'S' });
+
+            Enum.TryParse(number, true, out Number);
+            Enum.TryParse(suit, true, out Suit);
+
+            if (Number == Numbers.Error || Suit == Suits.Error)
+            {
+                Console.WriteLine(number + " " + suit + " is not a valid card");
+                throw new Exception();
+            }
         }
 
         // These operator overloads deal in card value only. They do not consider Suit

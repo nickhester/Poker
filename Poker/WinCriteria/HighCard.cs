@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Poker.WinCriteria
 {
+    // The HighCard will determine which given hand has the highest cards, when sorted and considered one by one
     public class HighCard : IWinCriteria
     {
         public string WinName { get { return Ranker.WinType.HighCard.ToString(); } set { } }
